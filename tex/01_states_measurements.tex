@@ -25,8 +25,15 @@
 \usetheme{Pittsburgh}
 %\usetheme{default}
 
-\setbeamertemplate{sidebar right}{}
-\setbeamertemplate{footline}[frame number]
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+%\setbeamertemplate{sidebar right}{}
+%\setbeamertemplate{footline}[frame number]
 %\usefonttheme{professionalfonts}
 
 %\usepackage{sansmathaccent}
