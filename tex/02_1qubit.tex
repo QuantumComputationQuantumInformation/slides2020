@@ -121,7 +121,7 @@ $\text{Set of binary measurements} = \left\{e\in\mathbb{R}^2 \mid e\in C_{\ge 0}
 \end{frame}
 
 \def\ysample{50}
-\def\xsample{50}
+\def\xsample{20}
 
 \begin{frame}{A single qubit}
 Let $u:=\begin{bmatrix}1&0\\0&1\end{bmatrix}$ and $\langle e,\omega\rangle := \Tr(e\omega)$.
@@ -142,7 +142,7 @@ Let $u:=\begin{bmatrix}1&0\\0&1\end{bmatrix}$ and $\langle e,\omega\rangle := \T
 \end{tikzpicture}
 \begin{tikzpicture}
     \begin{axis}[height=0.70\vsize, axis lines=center, axis on top, xmin=-1.0, xmax=1.0, ymin=-1.0, ymax=1.0, z buffer = sort, xtick = \empty, ytick=\empty, ztick=\empty ]
-    \addplot3[surf, samples= \xsample, samples y=\ysample, domain= 0:sqrt(2), domain y= 0:2*pi, mesh/interior colormap = {blueblack}{color=(cyan!50) color=(cyan!50)}, colormap = {blueblack}{color=(blue!60) color=(blue!60)}]
+    \addplot3[surf, samples= 2*\xsample, samples y=\ysample, domain= 0:sqrt(2), domain y= 0:2*pi, mesh/interior colormap = {blueblack}{color=(cyan!50) color=(cyan!50)}, colormap = {blueblack}{color=(blue!60) color=(blue!60)}]
       ({(sqrt(2)/2-abs(sqrt(2)/2-x))*cos(deg(y))}, {(sqrt(2)/2-abs(sqrt(2)/2-x))*sin(deg(y))}, {x});
     \end{axis}
 \end{tikzpicture}
@@ -596,6 +596,9 @@ Since the radius of convergense of $\exp$ at 0 is infinity,
 \begin{equation*}
 \exp(A) = \sum_{j=0}^\infty \frac1{j!}A^j.
 \end{equation*}
+
+\vspace{1em}
+In general, $\exp(A+B)\ne\exp(A)\exp(B)$.
 \end{frame}
 
 
