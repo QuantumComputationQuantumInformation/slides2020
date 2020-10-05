@@ -9,3 +9,4 @@ Youtube playlist of the lecture videos.
 https://www.youtube.com/playlist?list=PLmCVdZFx-DuebJ2Up_0tW5cAgJmsjECcY
 
 * 10/2 Introduction to quantum theory: Quantum states and quantum measurements [slide](/tex/01_states_measurements.pdf)
+* 10/6 A single qubit [slide](/tex/02_1qubit.pdf)
