@@ -53,11 +53,11 @@
 %\newcommand\bm[1]{\ensuremath{\boldsymbol{#1}}}
 %\newcommand\bm[1]{{\textbf{\it #1}}}
 
-\title{Joint system and entanglement}
+\title{Composite system and entanglement}
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{9, Oct., 2020}
+\date{13, Oct., 2020}
 
 
 
@@ -67,13 +67,13 @@
 \end{frame}
 
 
-\begin{frame}{Joint system}
+\begin{frame}{Composite system}
 \begin{itemize}
 \setlength{\itemsep}{2em}
 \item System = Set of states \& set of measurements
-\item \emm{Joint} system = ``Product'' of systems.
-\item \emm{Joint} system of a system of a coin (two-dimentional classical system) and a system of a dice (six-dimentional classical system) is twelve-dimentional classical system.
-\item What is a \emm{joint} system of quantum systems ?
+\item \emm{Composite} system = ``Product'' of systems.
+\item \emm{Composite} system of a system of a coin (two-dimentional classical system) and a system of a dice (six-dimentional classical system) is twelve-dimentional classical system.
+\item What is a \emm{composite} system of quantum systems ?
 \end{itemize}
 \end{frame}
 
@@ -187,7 +187,7 @@ A\otimes B &\longmapsto (\emm{v\otimes w \mapsto A(v)\otimes B(w)}).
 \end{frame}
 
 
-\begin{frame}{Joint quantum system}
+\begin{frame}{Composite quantum system}
 A quantum system on a complex linear space $\emm{V}$:
 \begin{itemize}
 \item $\text{Set of states} = \left\{\omega\in \mathcal{H}(\emm{V}) \mid \omega\in C_{\succeq 0}, \Tr(\omega) = 1\right\}$.
@@ -196,7 +196,7 @@ A quantum system on a complex linear space $\emm{V}$:
 
 \vspace{3em}
 For a quantum systems on $V$ and $W$, 
-a joint system is a quantum system on $V\otimes W$.
+a composite system is a quantum system on $V\otimes W$.
 
 \vspace{2em}
 A useful formula.
@@ -221,8 +221,8 @@ Examples of states
 \end{frame}
 
 \if0
-\begin{frame}{Joint system}
-Linear space of joint system is regarded as a \emm{tensor product} of linear spaces for the single systems
+\begin{frame}{Composite system}
+Linear space of composite system is regarded as a \emm{tensor product} of linear spaces for the single systems
 (justified by two postulates, no-signaling and tomographic locality [Barrett 2007 \numc{275}]).
 \begin{align*}
 C_1 \otimes_{\min} C_2
@@ -248,7 +248,7 @@ C_{1,2}\supseteq
 
 
 \begin{frame}{Separable states \& entangled states}
-A quantum state $\rho$ in a joint system is said to be \emm{separable} if
+A quantum state $\rho$ in a composite system is said to be \emm{separable} if
 \begin{align*}
 \rho = \sum_{i}p_i \rho_1^i \otimes \rho_2^i
 \end{align*}
@@ -343,13 +343,13 @@ The number of the terms in the decomposition is called the \emm{Schmidt rank}.
 \begin{frame}{Local tomography}
 For measurements $\{P_a\}_a$ of quantum system on $V$
 and $\{Q_b\}_b$ of quantum system on $W$,
-a measurement $\{P_a\otimes Q_b\}_{a,b}$ in the joint system is said to be \emm{local}.
+a measurement $\{P_a\otimes Q_b\}_{a,b}$ in the composite system is said to be \emm{local}.
 
 \vspace{3em}
 \end{frame}
 
 \begin{frame}{Partial trace and reduced density matrix}
-A probability of outcome of local measurement in a joint system is
+A probability of outcome of local measurement in a composite system is
 \begin{align*}
 P(a, b) = \Tr(\rho (P_a \otimes Q_b)).
 \end{align*}
@@ -428,7 +428,7 @@ which means at least one $T-\lambda_i I$ is not injective.
 
 \begin{frame}{Purification}
 \begin{theorem}
-For any density matrix $\rho$ on $V$, there exists a pure state $\ket{\psi}$ of a joint system on $V\otimes W$ for some $W$ such that $\Tr_W(\ket{\psi}\bra{\psi})=\rho$.
+For any density matrix $\rho$ on $V$, there exists a pure state $\ket{\psi}$ of a composite system on $V\otimes W$ for some $W$ such that $\Tr_W(\ket{\psi}\bra{\psi})=\rho$.
 \end{theorem}
 \end{frame}
 \fi

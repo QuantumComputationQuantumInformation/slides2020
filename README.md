@@ -10,5 +10,5 @@ https://www.youtube.com/playlist?list=PLmCVdZFx-DuebJ2Up_0tW5cAgJmsjECcY
 
 * 10/2 Introduction to quantum theory: Quantum states and quantum measurements [slide](/tex/01_states_measurements.pdf)
 * 10/6 A single qubit [slide](/tex/02_1qubit.pdf)
-* 10/9 Joint system and entanglement [slide](/tex/03_joint.pdf)
-* 10/13 Spectral decomposition, purification and superdense coding [slide](/tex/04_mixed_state.pdf)
+* 10/13 Composite system and entanglement [slide](/tex/03_joint.pdf)
+* 10/16 Spectral decomposition, purification and superdense coding [slide](/tex/04_mixed_state.pdf)

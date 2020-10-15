@@ -57,7 +57,7 @@
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{13, Oct., 2020}
+\date{16, Oct., 2020}
 
 
 
@@ -356,7 +356,7 @@ A = \sum_{a,b,c,d} A_{a,b,c,d} \ket{a}\bra{b}\otimes\ket{c}\bra{d}
 \begin{frame}{Local tomography}
 For measurements $\{P_a\}_a$ of quantum system on $V$
 and $\{Q_b\}_b$ of quantum system on $W$,
-a measurement $\{P_a\otimes Q_b\}_{a,b}$ in the joint system is said to be \emm{local}.
+a measurement $\{P_a\otimes Q_b\}_{a,b}$ in the composite system is said to be \emm{local}.
 
 \vspace{3em}
 \begin{align*}
@@ -366,7 +366,7 @@ P(a, b) = \Tr(\rho (P_a \otimes Q_b)).
 
 
 \begin{frame}{Marginal distribution and reduced density matrix}
-A probability of outcome of local measurement in a joint system is
+A probability of outcome of local measurement in a composite system is
 \begin{align*}
 P(a, b) = \Tr(\rho (P_a \otimes Q_b)).
 \end{align*}
@@ -399,7 +399,7 @@ By taking the partial trace for the second qubit, we obtain a reduced density ma
 
 \begin{frame}{Purification}
 \begin{theorem}
-For any density matrix $\rho$ on $V$, there exists a pure state $\ket{\psi}$ of a joint system on $V\otimes W$ for some $W$ such that $\Tr_W(\ket{\psi}\bra{\psi})=\rho$.
+For any density matrix $\rho$ on $V$, there exists a pure state $\ket{\psi}$ of a composite system on $V\otimes W$ for some $W$ such that $\Tr_W(\ket{\psi}\bra{\psi})=\rho$.
 \end{theorem}
 \begin{proof}
 For a spectral decomposition of $\rho$
