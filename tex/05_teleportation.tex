@@ -54,11 +54,11 @@
 %\newcommand\bm[1]{\ensuremath{\boldsymbol{#1}}}
 %\newcommand\bm[1]{{\textbf{\it #1}}}
 
-\title{Quantum teleportation and BB84 protocol}
+\title{Quantum teleportation}
 \author{Ryuhei Mori}
 %\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
 \institute{Tokyo Institute of Technology}
-\date{16, Oct., 2020}
+\date{20, Oct., 2020}
 
 
 
@@ -83,7 +83,7 @@ for any density matrices $\rho_1,\,\rho_2$ and $p\in[0,1]$.
 
 \vspace{2em}
 \begin{center}
-$T$ must be \emm{linear} (a proof is needed).
+$T:\mathcal{H}(V)\to\mathcal{H}(W)$ must be \emm{linear} (a proof is needed).
 \end{center}
 \end{frame}
 
@@ -95,7 +95,7 @@ $T$ must be \emm{linear} (a proof is needed).
 \emm{T^\dagger}: \text{The set of binary measurements} \to \text{the set of binary measurements}.
 \end{equation*}
 
-\vspace{1em}
+\vspace{.5em}
 \begin{equation*}
 \langle T(\rho), P\rangle
 =
@@ -134,7 +134,7 @@ $T\colon \mathcal{H}(V) \to \mathcal{H}(W)$.
 \vspace{1em}
 \begin{enumerate}
 \setlength{\itemsep}{2em}
-\item Trace preserving: $\Tr(T(\rho)) = \Tr(\rho)$.
+\item Trace-preserving: $\Tr(T(\rho)) = \Tr(\rho)$.
 \onslide<1>{\item Positive : $T(\rho)\succeq 0$ for any $\rho\succeq 0$.}
 \onslide<2>{\item Completely positive: $\mathsf{id}\otimes T$ is positive.}
 \end{enumerate}
@@ -143,13 +143,61 @@ $T\colon \mathcal{H}(V) \to \mathcal{H}(W)$.
 %In the following, we only consider $T\colon \rho \longmapsto U\rho U^\dagger$.
 \end{frame}
 
+\begin{frame}{Positive but not completely positive 1/2}
+\small
+$T\in\mathcal{L}(\mathcal{H}(\mathbb{C}^2))\colon \text{\emm{transposition}}$ according to $\{\ket{0},\ket{1}\}$.
+
+\vspace{2em}
+The transposition is obviously trace-preserving.
+
+\vspace{1em}
+The transposition is \emm{positive}.
+\begin{proof}
+For any $A\succeq 0$ and $\ket{\psi}\in\mathbb{C}^2$,
+\begin{align*}
+\bra{\psi} T(A)\ket{\psi} &=
+\bra{\psi} A^T \ket{\psi} =
+\bra{\psi} A^* \ket{\psi} =
+(\bra{\psi}^* A \ket{\psi}^*)^*\ge 0
+\qedhere
+\end{align*}
+\end{proof}
+\end{frame}
+
+\begin{frame}{Positive but not completely positive 2/2}
+\small
+But, the transposition is \emm{not} completely positive.
+\begin{proof}
+For $\ket{\Phi}:=\frac1{\sqrt{2}}(\ket{00}+\ket{11})$,
+\begin{align*}
+&(\mathsf{id}_{\mathcal{H}(\mathbb{C}^2)}\otimes T)(\ket{\Phi}\bra{\Phi})\\
+&=
+(\mathsf{id}_{\mathcal{H}(\mathbb{C}^2)}\otimes T)\Biggl(\frac12\biggl(\ket{0}\bra{0}\otimes\emm{\ket{0}\bra{0}}+\ket{0}\bra{1}\otimes\emm{\ket{0}\bra{1}}\\
+&\qquad +\ket{1}\bra{0}\otimes\emm{\ket{1}\bra{0}}+\ket{1}\bra{1}\otimes\emm{\ket{1}\bra{1}}\biggr)\Biggr)\\
+&=
+\frac12\biggl(\ket{0}\bra{0}\otimes\emm{\ket{0}\bra{0}}+\ket{0}\bra{1}\otimes\emm{\ket{1}\bra{0}}\\
+&\qquad +\ket{1}\bra{0}\otimes\emm{\ket{0}\bra{1}}+\ket{1}\bra{1}\otimes\emm{\ket{1}\bra{1}}\biggr)
+\end{align*}
+
+\vspace{-.5em}
+\begin{align*}
+\ket{00}&\mapsto\ket{00}&
+\ket{01}&\mapsto\ket{10}&
+\ket{10}&\mapsto\ket{01}&
+\ket{11}\mapsto\ket{11}
+\end{align*}
+Hence, $\ket{01}-\ket{10}\mapsto \ket{10}-\ket{01}$.
+$(\mathsf{id}_{\mathcal{H}(\mathbb{C}^2)}\otimes T)(\ket{\Phi}\bra{\Phi})$ is not positive semidefinite.
+\end{proof}
+\end{frame}
+
 \begin{frame}{Unitary operations}
 \begin{equation*}
 \rho \longmapsto U\rho U^\dagger.
 \end{equation*}
 \begin{enumerate}
 \setlength{\itemsep}{2em}
-\item Trace preserving: $\Tr(U\rho U^\dagger) = \Tr(\rho)$.
+\item Trace-preserving: $\Tr(U\rho U^\dagger) = \Tr(\rho)$.
 \item Completely positive: 
 $(\mathsf{id}\otimes T)(\rho) = (I\otimes U)\rho (I\otimes U^\dagger)$.
 %$\mathsf{id}\otimes T$ is positive.
@@ -164,9 +212,9 @@ In the most of quantum computing, only \emm{pure} states and \emm{unitary} opera
 \begin{frame}{Quantum circuit}
 \[
 \Qcircuit @C=1.8em @R=1.8em @!R {
-\lstick{\ket{0}}& \qw      & \gate{H} & \qw & \gate{X} & \ctrl{2} & \gate{H} &\qw\\
-\lstick{\ket{0}}& \qw      & \gate{H} & \ctrl{1} & \gate{Z} & \qw & \gate{H} &\qw\\
-\lstick{\ket{0}}& \gate{X} & \gate{H} & \targ    & \qw      & \targ    & \gate{H} &\qw
+\lstick{\ket{0}}& \qw      & \gate{H} & \qw & \gate{X} & \ctrl{2} & \gate{H} &\meter\qw\\
+\lstick{\ket{0}}& \qw      & \gate{H} & \ctrl{1} & \gate{Z} & \qw & \gate{H} &\meter\qw\\
+\lstick{\ket{0}}& \gate{X} & \gate{H} & \targ    & \qw      & \targ    & \gate{H} &\meter\qw
 }
 \]
 \end{frame}
@@ -194,6 +242,7 @@ In the most of quantum computing, only \emm{pure} states and \emm{unitary} opera
 \end{align*}
 \end{frame}
 
+\if0
 \begin{frame}{Simplification of quantum circuit 1/5}
 \[
 \Qcircuit @C=1.8em @R=1.8em @!R {
@@ -416,6 +465,7 @@ In the most of quantum computing, only \emm{pure} states and \emm{unitary} opera
 \]
 
 \end{frame}
+\fi
 
 
 
@@ -462,6 +512,9 @@ P(a, b) = \Tr(\rho_{V\otimes W} (P_a \otimes Q_b)).
 P(a\mid b) &= \frac1{P(b)} \Tr(\rho_{V\otimes W} (P_a \otimes Q_b))
 =  \frac1{P(b)}\Tr(\emm{\Tr_W(\rho_{V\otimes W} (I_V\otimes Q_b))} P_a).
 \end{align*}
+$\rho_{V\mid Q_b} := \emm{\frac1{P(b)} {\Tr_W(\rho_{V\otimes W} (I_V\otimes Q_b))}}$.
+
+\vspace{2em}
 For $\rho_{V\otimes W}=\ket{\varphi}_{V\otimes W}\bra{\varphi}_{V\otimes W}$ and $Q_b=\ket{\psi_b}_W\bra{\psi_b}_W$,
 \begin{equation*}
 \emm{\Tr_W(\rho_{V\otimes W} (I\otimes Q_b))}
@@ -492,12 +545,18 @@ From an expression $\ket{\varphi}_{V\otimes W}=\emm{\sum_{i,j}\varphi_{i,j} \ket
 \begin{align*}
 \ket{\varphi}_{V\otimes W}=\sum_{i,j}\varphi_{i,j} \ket{i}_V\ket{\psi_j}_W
 \longmapsto
-\emm{\sum_{i} \varphi_{i,b}\ket{i}_V}
+\emm{\frac1{P(b)}\sum_{i} \varphi_{i,b}\ket{i}_V}
 \end{align*}
 \end{frame}
 
 \begin{frame}{Examples of conditional density operator}
-For $\ket{\psi}_{V\otimes W} := \sum_{i,j=0}^1 \alpha_{i,j}\ket{i}_V\ket{j}_W$
+For $\ket{\psi}_{V\otimes W} := \sum_{i,j=0}^1 \alpha_{i,j}\ket{i}_V\ket{j}_W$, we measure the system $W$ by $(\ket{0}\bra{0},\ket{1}\bra{1})$.
+
+\vspace{2em}
+if the outcome is 0, the state $\frac1{\sqrt{|\alpha_{0,0}|^2+|\alpha_{1,0}|^2}}\sum_{i=0}^1 \alpha_{i,0}\ket{i}_V$.
+
+\vspace{2em}
+if the outcome is 1, the state $\frac1{\sqrt{|\alpha_{0,1}|^2+|\alpha_{1,1}|^2}}\sum_{i=0}^1 \alpha_{i,1}\ket{i}_V$.
 \end{frame}
 
 
@@ -523,9 +582,9 @@ For $\ket{\psi}_{V\otimes W} := \sum_{i,j=0}^1 \alpha_{i,j}\ket{i}_V\ket{j}_W$
 For $\ket{\psi}_{A_1}=\alpha\ket{0}_{A_1}+\beta\ket{1}_{A_1}$
 \begin{align*}
 \ket{\psi}_{A_1}\ket{\Phi}_{A_2\otimes B} &= \left(\alpha\ket{0}_{A_1}+\beta\ket{1}_{A_1}\right)\frac1{\sqrt{2}}\left(\ket{0}_{A_2}\ket{0}_B + \ket{1}_{A_2}\ket{1}_B\right)\\
- &\overset{\mathsf{CNOT}_{A_1A_2}}{\longmapsto} \frac{\alpha}{\sqrt{2}}\left(\ket{0}_{A_1}\ket{0}_{A_2}\ket{0}_B + \ket{0}_{A_1}\ket{1}_{A_2}\ket{1}_B\right)\\
- &\quad + \frac{\beta}{\sqrt{2}}\left(\ket{1}_{A_1}\ket{1}_{A_2}\ket{0}_B + \ket{1}_{A_1}\ket{0}_{A_2}\ket{1}_B\right)\\
- &\overset{H_{A_1}}{\longmapsto} \frac{\alpha}{2}\left(\ket{000}_{A_1A_2B} +\ket{100}_{A_1A_2B} + \ket{011}_{A_1A_2B} + \ket{111}_{A_1A_2B}\right)\\
+ &\overset{\emm{\mathsf{CNOT}_{A_1A_2}}}{\longmapsto} \frac{\alpha}{\sqrt{2}}\left(\ket{0}_{A_1}\ket{0}_{A_2}\ket{0}_B + \ket{0}_{A_1}\ket{1}_{A_2}\ket{1}_B\right)\\
+ &\qquad + \frac{\beta}{\sqrt{2}}\left(\ket{1}_{A_1}\ket{1}_{A_2}\ket{0}_B + \ket{1}_{A_1}\ket{0}_{A_2}\ket{1}_B\right)\\
+ &\overset{\emm{H_{A_1}}}{\longmapsto} \frac{\alpha}{2}\left(\ket{000}_{A_1A_2B} +\ket{100}_{A_1A_2B} + \ket{011}_{A_1A_2B} + \ket{111}_{A_1A_2B}\right)\\
  &\quad + \frac{\beta}{2}\left(\ket{010}_{A_1A_2B} -\ket{110}_{A_1A_2B} + \ket{001}_{A_1A_2B} - \ket{101}_{A_1A_2B}\right)
 \end{align*}
 \end{frame}
@@ -547,6 +606,7 @@ According to the measurement outcome of $A_1A_2$
 \end{align*}
 \end{frame}
 
+\if0
 \begin{frame}{Transpose trick}
 \small
 \begin{align*}
@@ -572,19 +632,21 @@ According to the measurement outcome of $A_1A_2$
 
 \begin{frame}{BB84 protocol}
 \end{frame}
+\fi
 
 \begin{frame}{Assignments}
 \begin{enumerate}
 \setlength{\itemsep}{2em}
-\item Show the density matrix $\rho\in H(\mathbb{C}^2)$ of the Bell state
+\item Show the state vector $\rho\in H(\mathbb{C}^2)$ of the Bell state
 \begin{equation*}
 \frac1{\sqrt{2}}(\ket{00}+\ket{11}) \in \mathbb{C}^2\otimes \mathbb{C}^2
 \end{equation*}
 when $\ket{0}\bra{0}$ is measured at the second system.
-\item Show the density matrix $\rho\in H(\mathbb{C}^2)$ of the Bell state
+\item Show the state vector $\rho\in H(\mathbb{C}^2)$ of the Bell state
 when $\ket{+}\bra{+}$ is measured at the second system.
-\item Show the density matrix $\rho\in H(\mathbb{C}^2)$ of the Bell state
+\item Show the state vector $\rho\in H(\mathbb{C}^2)$ of the Bell state
 when $\ket{\psi}\bra{\psi}$ is measured at the second system where $\ket{\psi}:=\alpha\ket{0}+\beta\ket{1}$.
+%\item {[Advanced]} Show the reduced density matrix of system $B$ before the measurements in the quantum teleportation protocol.
 \end{enumerate}
 \end{frame}
 
