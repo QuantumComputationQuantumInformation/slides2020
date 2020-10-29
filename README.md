@@ -15,3 +15,4 @@ https://www.youtube.com/playlist?list=PLmCVdZFx-DuebJ2Up_0tW5cAgJmsjECcY
 * 10/20 Quantum teleportation [slide](/tex/05_teleportation.pdf)
 * 10/23 Nonlocality and Tsirelson's bound [slide](/tex/06_nonlocality.pdf)
 * 10/27 Quantum circuit and Deutsch--Jozsa algorithm [slide](/tex/07_Deutsch.pdf)
+* 10/30 Universality of quantum circuit [slide](/tex/08_Universality.pdf)
