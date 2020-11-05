@@ -94,6 +94,7 @@ satisfying $\|U-\widetilde{U}\|<\emm{\epsilon}$.
 \item $\mathsf{U}(n)$ and $\mathsf{SU}(n)$ are groups.
 \item For $U\in\mathsf{SU}(n)$ and $V\in\mathsf{U}(n)$, $VUV^\dagger\in\mathsf{SU}(n)$.
 \item For $V\in\mathsf{U}(n)$ and $W\in\mathsf{U}(n)$, $VWV^\dagger W^\dagger\in\mathsf{SU}(n)$.
+\item For $U\in\mathsf{U}(n)$, there exists $V\in\mathsf{SU}(n)$ and $\theta\in\mathbb{R}$ such that $U = \mathsf{e}^{i\theta}V$.
 \end{itemize}
 \end{frame}
 
@@ -142,7 +143,7 @@ Any controlled-unitary gate can be decomposed to a product of \emm{CNOT and arbi
 
 \begin{frame}{Decomposition of single qubit unitary}
 \begin{lemma}
-Any single qubit unitary $U$, there is single qubit unitary matrices $A,\,B,\,C$ such that
+Any single qubit unitary $U\in\mathsf{U}(2)$, there is single qubit unitary matrices $A,\,B,\,C$ such that
 $\emm{ABC=I}$ and $\emm{\mathsf{e}^{i\alpha}AXBXC=U}$.
 \end{lemma}
 
@@ -163,13 +164,13 @@ From this lemma,
 
 \begin{frame}{Decomposition of single qubit unitary}
 \begin{lemma}
-Any single qubit unitary $U$, there is single qubit unitary matrices $A,\,B,\,C$ and $\alpha\in\mathbb{R}$ such that
+Any single qubit unitary $U\in\mathsf{U}(2)$, there is single qubit unitary matrices $A,\,B,\,C$ and $\alpha\in\mathbb{R}$ such that
 $\emm{ABC=I}$ and $\emm{\mathsf{e}^{i\alpha}AXBXC=U}$.
 \end{lemma}
 \begin{proof}
 For any $2\times 2$ unitary matrix, there exist $\alpha,\,\beta,\,\gamma,\,\delta\in\mathbb{R}$ such that
 \begin{equation*}
-U=\mathsf{e}^{i\alpha}R_Z(\beta)R_Y(\gamma)R_Z(\delta)
+U=\mathsf{e}^{i\alpha}R_Z(\beta)R_Y(\gamma)R_Z(\delta).
 \end{equation*}
 Let $A:= R_Z(\beta)R_Y(\gamma/2)$, $B:=R_Y(-\gamma/2)R_Z(-(\beta+\delta)/2)$, $C:=R_Z((\delta-\beta)/2)$.
 Then, $ABC=I$.
@@ -193,7 +194,7 @@ e^{-i\beta/2}&0\\
 0&\mathsf{e}^{i\beta/2}
 \end{bmatrix}
 \begin{bmatrix}
-\cos(\gamma/2)&\sin(\gamma/2)\\
+\cos(\gamma/2)&-\sin(\gamma/2)\\
 \sin(\gamma/2)&\cos(\gamma/2)
 \end{bmatrix}
 \begin{bmatrix}
@@ -203,7 +204,7 @@ e^{-i\delta/2}&0\\
 &=
 \mathsf{e}^{i\alpha}
 \begin{bmatrix}
-\mathsf{e}^{i(-\beta/2-\delta/2)}\cos(\gamma/2)&\mathsf{e}^{i(-\beta/2+\delta/2)}\sin(\gamma/2)\\
+\mathsf{e}^{i(-\beta/2-\delta/2)}\cos(\gamma/2)&-\mathsf{e}^{i(-\beta/2+\delta/2)}\sin(\gamma/2)\\
 \mathsf{e}^{i(+\beta/2-\delta/2)}\sin(\gamma/2)&\mathsf{e}^{i(+\beta/2+\delta/2)}\cos(\gamma/2)
 \end{bmatrix}
 \end{align*}
@@ -214,6 +215,12 @@ U&=\begin{bmatrix} a&b\\c&d\end{bmatrix}
 |a|^2+|b|^2 &= 1&
 |c|^2+|d|^2 &= 1\\
 a^*c + b^*d &= 0
+\end{align*}
+\begin{align*}
+\alpha &= \frac12\arg ad = \frac12\arg bc + \frac\pi2&
+\beta &= \arg a^* c\\
+\gamma &= 2\arccos(|a|)&
+\delta &= \arg c^* d
 \end{align*}
 \end{frame}
 
@@ -241,11 +248,18 @@ R_{\hat{n}}(\theta):=\cos\frac{\theta}2I -i\sin\frac{\theta}2(n_XX+n_YY+n_ZZ).
 For any $U\in\mathsf{U}(2)$, there exist $\alpha,\,\theta\in\mathbb{R}$ and a real unit three-dimensional vector $\hat{n}$ such that
 $U=\mathsf{e}^{i\alpha}R_{\hat{n}}(\theta)$.
 
-\vspace{2em}
-$U\in\mathsf{U}(2)$ is in $\mathsf{SU}(2)$ iff $\Tr(U)\in\mathbb{R}$ since two eigenvalues of $U\in\mathsf{SU}(2)$ are in the form $\{\mathsf{e}^{i\theta}, \mathsf{e}^{-i\theta}\}$.
+\vspace{1em}
+$U\in\mathsf{U}(2)$ is in $\mathsf{SU}(2)$ iff two eigenvalues of $U$ are in the form $\{\mathsf{e}^{i\theta}, \mathsf{e}^{-i\theta}\}$.
 
-\vspace{2em}
-$U\in\mathsf{U}(2)$ is in $\mathsf{SU}(2)$ iff $\emm{U=R_{\hat{n}}(\theta)}$ for some $\theta\in\mathbb{R}$ and rear unit vector $\widehat{n}\in\mathbb{R}^3$.
+\vspace{1em}
+If $\Tr(U)\in\mathbb{R}\setminus\{0\}$, then $U\in\mathsf{SU}(2)$.
+
+\vspace{1em}
+$R_{\hat{n}}(\theta)\in\mathsf{SU}(2)$ if $\theta\ne \pm\pi + 2n\pi$.
+From the continuity, $\emm{R_{\hat{n}}(\theta)\in\mathsf{SU}(2)}$ for any $\theta\in\mathbb{R}$.
+
+%\vspace{1em}
+%$U\in\mathsf{U}(2)$ is in $\mathsf{SU}(2)$ iff $\emm{U=R_{\hat{n}}(\theta)}$ for some $\theta\in\mathbb{R}$ and rear unit vector $\widehat{n}\in\mathbb{R}^3$.
 \end{frame}
 
 \begin{frame}{Special unitary group and group commutator}
@@ -473,7 +487,7 @@ satisfying $\|U-\widetilde{U}\|<\emm{\epsilon}$.
 
 \begin{frame}{Solovay--Kitaev theorem}
 \begin{theorem}
-Let $\{U_1,\dotsc,U_k\}$ be a dense subset of $\mathsf{SU}(2)$.
+Assume $\{U_1,\dotsc,U_k\}$ generates a dense subset of $\mathsf{SU}(2)$.
 Then, any $U\in\mathsf{SU}(2)$ can be approxmiated with error $\epsilon$ by $\emm{[\log (1/\epsilon)]^c}$ multiplications of $\{U_1,\dotsc,U_k\}$.
 \end{theorem}
 \end{frame}
