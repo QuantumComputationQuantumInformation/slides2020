@@ -1,0 +1,286 @@
+\documentclass{beamer}
+%\usepackage{xspace}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+%\usepackage{svg}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape]
+%\usepackage{psfrag}
+%\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{braket}
+\usepackage{qcircuit}
+%\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{circuits.logic.US}
+\usetikzlibrary{graphs}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{datavisualization.formats.functions}
+\usepackage{pgfplotstable}
+\usepgfplotslibrary{patchplots}
+
+\setbeamercovered{transparent}
+
+\usetheme{Pittsburgh}
+%\usetheme{default}
+
+\setbeamertemplate{sidebar right}{}
+\setbeamertemplate{footline}[frame number]
+%\usefonttheme{professionalfonts}
+
+%\usepackage{sansmathaccent}
+%\usepackage{bm}
+
+%\usepackage{unicode-math}
+%%\setmainfont[SlantedFont={Latin Modern Roman Slanted},SlantedFeatures={Color=000000},
+%%  SmallCapsFont={TeX Gyre Termes},SmallCapsFeatures={Letters=SmallCaps}]{XITS}
+%\setmathfont[math-style=ISO,sans-style=upright]{XITS Math}
+%\setmathfont[range={\mathcal,\mathbfcal}]{Latin Modern Math}
+
+\usepackage{sfmath}
+
+%\mathversion{sans}
+
+\newcommand{\Tr}{\mathsf{Tr}}
+
+\definecolor{redorange}{rgb}{1.0, .25, .25}
+\definecolor{citation}{rgb}{.1, 0.8, .35}
+\newcommand\emm[1]{\textcolor{redorange}{{#1}}}
+\newcommand\numc[1]{\textcolor{citation}{{\bf #1}}}
+
+%\newcommand\bm[1]{{\mbox{\boldmath $#1$}}}
+\newcommand\bm[1]{{\mathbf{#1}}}
+%\newcommand\bm[1]{{\bf #1}}
+%\newcommand\bm[1]{\ensuremath{\boldsymbol{#1}}}
+%\newcommand\bm[1]{{\textbf{\it #1}}}
+
+\title{Solovay--Kitaev theorem}
+\author{Ryuhei Mori}
+%\institute{$\vcenter{\hbox{\includegraphics[width=30pt]{ELC_logo}}}$ Postdoctoral Fellow of ELC\\ $\vcenter{\hbox{\includegraphics[width=20pt]{titech_logo}}}$ Tokyo Institute of Technology}
+\institute{Tokyo Institute of Technology}
+%\date{21, Feb, 2019}
+
+
+
+\begin{document}
+\begin{frame}[plain]
+\maketitle
+\end{frame}
+
+
+
+\begin{frame}{Solovay--Kitaev theorem}
+\begin{theorem}
+Assume that $\{U_1,\dotsc,U_k\}$ generates a dense subset of $\mathsf{SU}(2)$.
+Then, any $U\in\mathsf{SU}(2)$ can be approxmiated with error $\epsilon$ by $\emm{[\log (1/\epsilon)]^c}$ multiplications of $\{U_1,\dotsc,U_k\}$ for $c=\log 5 / \log (3/2) \approx 3.97$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Special unitary group}
+\begin{itemize}
+\setlength{\itemsep}{2em}
+\item $\mathsf{U}(n) := \text{the set of $n\times n$ unitary matrices}.$
+\item $\mathsf{SU}(n) := \text{the set of $n\times n$ unitary matrices $U$ with $\emm{\det(U)=1}$}.$
+\item $\mathsf{U}(n)$ and $\mathsf{SU}(n)$ are groups.
+\item For $U\in\mathsf{SU}(n)$ and $V\in\mathsf{U}(n)$, $VUV^\dagger\in\mathsf{SU}(n)$.
+\item For $V\in\mathsf{U}(n)$ and $W\in\mathsf{U}(n)$, $VWV^\dagger W^\dagger\in\mathsf{SU}(n)$.
+\item For $U\in\mathsf{U}(n)$, there exists $V\in\mathsf{SU}(n)$ and $\theta\in\mathbb{R}$ such that $U = \mathsf{e}^{i\theta}V$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Special unitary group and rotation}
+For a real unit vector $\hat{n}=[n_X\ n_Y\ n_Z]$, let
+\begin{equation*}
+R_{\hat{n}}(\theta):=\cos\frac{\theta}2I -i\sin\frac{\theta}2(n_XX+n_YY+n_ZZ).
+\end{equation*}
+For any $U\in\mathsf{U}(2)$, there exist $\alpha,\,\theta\in\mathbb{R}$ and a real unit three-dimensional vector $\hat{n}$ such that
+$U=\mathsf{e}^{i\alpha}R_{\hat{n}}(\theta)$.
+
+\vspace{2em}
+$U\in\mathsf{U}(2)$ is in $\mathsf{SU}(2)$ iff $\emm{U=R_{\hat{n}}(\theta)}$ for some $\theta\in\mathbb{R}$ and rear unit vector $\widehat{n}\in\mathbb{R}^3$.
+\end{frame}
+
+\begin{frame}{Special unitary group and group commutator}
+\small
+\begin{theorem}
+For any $U\in\mathsf{SU}(2)$, there exist $V,\,W\in\mathsf{SU}(2)$ such that $U = VWV^\dagger W^\dagger$.
+\end{theorem}
+\begin{proof}
+From
+\begin{align*}
+\emm{R_z(\theta)(iX) R_z(-\theta) (-iX)} = R_z(2\theta)
+\end{align*}
+any $Z$-rotation has the group commutator decomposition.
+For some unitary $S$, $U = SR_z(\eta)S^\dagger$ for some $\eta\in\mathbb{R}$.
+Hence, $U$ has a group commutator decomposition $U = VWV^\dagger W^\dagger$ 
+for $V=S\emm{R_z(\eta/2)}S^\dagger$ and $W:=S\emm{(iX)}S^\dagger$.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Special unitary group and group commutator}
+\small
+\begin{theorem}
+For any $U\in\mathsf{SU}(2)$, there exist $V,\,W\in\mathsf{SU}(2)$ such that $U = VWV^\dagger W^\dagger$ for some $V,\,W$ satisfying $\|I-V\|<c_{\mathsf{GC}}\sqrt{\|I-U\|}$ and $\|I-W\|<c_{\mathsf{GC}}\sqrt{\|I-U\|}$
+for some constant $c_{\mathsf{GC}}>1/\sqrt{2}$.
+\end{theorem}
+\begin{proof}
+
+\vspace{-2em}
+\begin{align*}
+&R_Z(\theta)R_X(\theta)R_Z(\theta)^\dagger R_X(\theta)^\dagger
+= R_Z(\theta)R_X(\theta)R_Z(-\theta)R_X(-\theta)\\
+&= R_Z(\theta)R_X(\theta)R_Z(-\theta)R_X(-\theta)\\
+&= \left[\cos\frac{\theta}2 I - i\sin\frac{\theta}2 Z\right]
+\left[\cos\frac{\theta}2 I - i\sin\frac{\theta}2 X\right]
+\left[\cos\frac{\theta}2 I + i\sin\frac{\theta}2 Z\right]
+\left[\cos\frac{\theta}2 I + i\sin\frac{\theta}2 X\right]\\
+&= \left[\cos^4\frac{\theta}2+2\cos^2\frac{\theta}2\sin^2\frac{\theta}2-\sin^4\frac{\theta}2\right] I + \dotsb\\
+%&= \left[\cos^2\frac{\theta}2(\cos^2\frac{\theta}2+2\sin^2\frac{\theta}2)-\sin^4\frac{\theta}2\right] I + \dotsb\\
+&= \left[1-2\sin^4\frac{\theta}2\right] I + \dotsb
+=R_{\widehat{n}_\theta}(\emm{\varphi})
+%&= \left[\cos^2\frac{\theta}2 I - i\sin\frac{\theta}2\cos\frac{\theta}2(Z+X) - \sin^2\frac{\theta}2 ZX\right]\\
+%&\cdot \left[\cos^2\frac{\theta}2 I + i\sin\frac{\theta}2\cos\frac{\theta}2(Z+X) - \sin^2\frac{\theta}2 ZX\right]
+%&= \left[\cos^2\frac{\theta}2 I - \sin^2\frac{\theta}2 ZX\right]^2 - i\sin\frac{\theta}2\cos\frac{\theta}2(Z+X) \right]\\
+\end{align*}
+\emm{$\cos\frac{\varphi}2 = 1-2\sin^4\frac{\theta}2$}.
+%$\sin^2\frac{\varphi}2 = 4\sin^4\frac{\theta}2 - 4\sin^8\frac{\theta}2$.
+%$\sin\frac{\varphi}2 = 2\sin^2\frac{\theta}2\sqrt{1 - \sin^4\frac{\theta}2}$.
+For some $S\in \mathsf{U}(2)$ and $\varphi\in\mathbb{R}$, $U=SR_{\widehat{n}_\theta}(\varphi)S^\dagger$.
+For $V:= SR_Z(\theta)S^\dagger$ and $W:= SR_X(\theta)S^\dagger$,
+$U=VWV^\dagger W^\dagger$.
+\end{proof}
+\end{frame}
+
+\begin{frame}{Rotation matrix and distance}
+\begin{align*}
+\|I - R_{\widehat{n}}(\theta)\|
+&= \left\|\begin{bmatrix}1-\mathsf{e}^{i\theta/2}&0\\0&1-\mathsf{e}^{-i\theta/2}\end{bmatrix}\right\|\\
+&= \left|1-\mathsf{e}^{i\theta/2}\right|\\
+&= 2\left|\sin\frac{\theta}4\right|
+\end{align*}
+For $U\in \mathsf{SU}(2)$, $V,\,W\in\mathsf{SU}(2)$ satisfying $U=VWV^\dagger W^\dagger$ in the construction
+\begin{equation*}
+\|I - U\| = 2\left|\sin\frac{\varphi}4\right|
+= 2\sqrt{\frac{1-\cos\frac{\varphi}2}2}
+= 2 \sin^2\frac{\theta}2
+\approx 8 \sin^2\frac{\theta}4
+= 2\|I - V\|^2
+\end{equation*}
+With some constant $c_{\mathsf{GC}} > 1/\sqrt{2}$, 
+$\|I-V\|\le \emm{c_{\mathsf{GC}} \sqrt{\|I-U\|}}$.
+\end{frame}
+
+\begin{frame}{Solovay--Kitaev algorithm}
+\begin{algorithmic}
+\Function{Solovay--Kitaev}{$U$, $n$}
+\If {$n=0$}
+  \State \Return Basic approximation to $U$
+\EndIf
+\State $U_{n-1} \gets$ \Call{Solovay--Kitaev}{$U$, $n-1$}
+\State $V, W \gets$ \Call{GC--Decompose}{$UU_{n-1}^\dagger$}
+\State $V_{n-1} \gets$ \Call{Solovay--Kitaev}{$V$, $n-1$}
+\State $W_{n-1} \gets$ \Call{Solovay--Kitaev}{$W$, $n-1$}
+\State \Return $V_{n-1}W_{n-1}V_{n-1}^\dagger W_{n-1}^\dagger U_{n-1}$.
+\EndFunction
+\end{algorithmic}
+
+\vspace{1em}
+\begin{algorithmic}
+\Function{GC--Decompose}{$\Delta$}
+\State \Return ($V$, $W$) satisfying $VWV^\dagger W^\dagger = \Delta$ with $\|I - V\|,\,\|I-W\|\le c_{\mathsf{GC}}\sqrt{\|I-\Delta\|}$.
+\EndFunction
+\end{algorithmic}
+\end{frame}
+
+\begin{frame}{Analysis}
+\small
+\begin{theorem}
+If $\|I - V\|,\, \|I - W\|\le \delta$,
+$\|V-\widetilde{V}\|,\,\|W-\widetilde{W}\| \le \Delta$
+\begin{equation*}
+\|VWV^\dagger W^\dagger - \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger\| \le c_{\mathsf{B}} \Delta(\delta + \Delta).
+\end{equation*}
+\end{theorem}
+From this (surprising) theorem for $\Delta=\epsilon_{n-1}$, $\delta=c_{\mathsf{GC}}\sqrt{\epsilon_{n-1}}$,
+for $c_{\mathsf{approx}} \approx c_B c_{\mathsf{GC}}$.
+\begin{align*}
+\ell_n &\le 5\ell_{n-1}\\
+\epsilon_n &\le c_{\mathsf{approx}} \epsilon_{n-1}^{3/2}
+\end{align*}
+Then,
+\begin{align*}
+\ell_n&\le 5^n \ell_0\\
+c_{\mathsf{approx}}^2\epsilon_n &\le c_{\mathsf{approx}}^3 \epsilon_{n-1}^{3/2}=(c_{\mathsf{approx}}^2\epsilon_{n-1})^{3/2} \\
+&\le (c_{\mathsf{approx}}^2\epsilon_{0})^{(3/2)^n} 
+%\log (1/[c_{\mathsf{approx}}^2 \epsilon_n]) &\ge (3/2)\log (1/[c_{\mathsf{approx}}^2 \epsilon_{n-1}])\\
+%&\ge (3/2)^n\log (1/[c_{\mathsf{approx}}^2 \epsilon_{0}])\\
+%&\ge (\ell_n/\ell_0)^{\frac{\log (3/2)}{\log 5}}\log (1/\epsilon_{0})
+\end{align*}
+If $\epsilon_0 < 1 / c_{\mathsf{approx}}^2$, $\ell_n = O\left((\log (1/\epsilon))^{\emm{\frac{\log 5}{\log (3/2)}}}\right)$.
+\end{frame}
+
+\begin{frame}{Proof 1/2}
+\small
+\begin{theorem}
+If $\|I - V\|,\, \|I - W\|\le \delta$,
+$\|V-\widetilde{V}\|,\,\|W-\widetilde{W}\| \le \Delta$
+\begin{equation*}
+\|VWV^\dagger W^\dagger - \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger\| \le \emm{8\Delta^2 + 8\Delta\delta} + 4\Delta\delta^2 + 4\Delta^3 + \Delta^4.
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let $\Delta_V := \widetilde{V} - V$ and $\Delta_W := \widetilde{W} - W$.
+\begin{align*}
+ \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger
+&= VWV^\dagger W^\dagger + 
+\Delta_VWV^\dagger W^\dagger + 
+V\Delta_WV^\dagger W^\dagger\\
+&\quad + VW\Delta_V^\dagger W^\dagger + VWV^\dagger\Delta_W^\dagger + O(\Delta^2).
+\end{align*}
+\begin{align*}
+&\|VWV^\dagger W^\dagger - \widetilde{V}\widetilde{W}\widetilde{V}^\dagger\widetilde{W}^\dagger\|
+\le
+\|\Delta_VWV^\dagger W^\dagger + VW\Delta_V^\dagger W^\dagger\|\\
+&\quad+\|V\Delta_WV^\dagger W^\dagger + VWV^\dagger\Delta_W^\dagger\| +
+\binom{4}{2}\Delta^2 + \binom{4}{3}\Delta^3 + \Delta^4.
+\end{align*}
+\end{proof}
+\end{frame}
+
+\begin{frame}{Proof 2/2}
+\small
+\begin{proof}
+%Let $\delta_V := V - I$ and $\delta_W := W - I$.
+Let $\delta_W := W - I$.
+\begin{align*}
+\|\Delta_VWV^\dagger W^\dagger + VW\Delta_V^\dagger W^\dagger\|
+&= \|\Delta_VV^\dagger + V\Delta_V^\dagger + \Delta_V\delta_W V^\dagger + V\Delta_V^\dagger \delta_W^\dagger + \dotsb\|\\
+&\le \|\emm{\Delta_VV^\dagger + V\Delta_V^\dagger}\| + 4 \Delta \delta + 2\Delta\delta^2\\
+\end{align*}
+Since $V$ and $V+\Delta_V$ are unitary,
+\begin{align*}
+&(V+\Delta_V)(V+\Delta_V)^\dagger = I\\
+\iff& V V^\dagger + V \Delta_V^\dagger + \Delta_V V^\dagger + \Delta_V \Delta_V^\dagger = I\\
+\iff& V \Delta_V^\dagger + \Delta_V V^\dagger + \Delta_V \Delta_V^\dagger = 0
+\end{align*}
+\begin{align*}
+\|\Delta_VWV^\dagger W^\dagger + VW\Delta_V^\dagger W^\dagger\|\le \Delta^2 + 4 \Delta\delta + 2\Delta\delta^2.
+\end{align*}
+\end{proof}
+%$c_{\mathsf{approx}}\approx 8c_{\mathsf{GC}}$.
+$c_{\mathsf{B}}\approx 8$.
+\end{frame}
+
+\begin{frame}{Assignments}
+\small
+\begin{enumerate}
+\setlength{\itemsep}{2em}
+\item Show a quantum circuit for controlled-Hadamard gate using arbitrary single-qubit gates and CNOT gates.
+\item {[Very advanced]} By modifying levels of Solovay--Kitaev algorithm in the recursion, can we improve the exponent $c=\log 5 / \log(3/2)$ ?
+\end{enumerate}
+\end{frame}
+
+
+\end{document}
