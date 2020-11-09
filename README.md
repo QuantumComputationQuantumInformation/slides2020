@@ -17,3 +17,4 @@ https://www.youtube.com/playlist?list=PLmCVdZFx-DuebJ2Up_0tW5cAgJmsjECcY
 * 10/27 Quantum circuit and Deutsch--Jozsa algorithm [slide](/tex/07_Deutsch.pdf)
 * 10/30 Universality of quantum circuit [slide](/tex/08_Universality.pdf)
 * 11/6 Universality of quantum circuit 2 [slide](/tex/09_Universality2.pdf)
+* 11/10 Solovay--Kitaev theorem [slide](/tex/10_SolovayKitaev.pdf)
