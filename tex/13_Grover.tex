@@ -146,7 +146,7 @@ V_f \ket{x} = (-1)^{f(x)}\ket{x}.
 V_f  &= I - 2 \sum_{x: f(x) = 1}\ket{x}\bra{x}\\
 W    &:= I - 2 \ket{\psi}\bra{\psi}.
 \end{align*}
-Then, $G:=WV_f$ is called the Grover's operator.
+Then, $G:=-WV_f$ is called the Grover's operator.
 
 \vspace{2em}
 The Grover's algorithm just measures \emm{$G^k\ket{\psi}$} by the computational basis for some \emm{appropriately chosen} $k$.
@@ -223,7 +223,7 @@ where $\theta=\arcsin\sqrt{\frac{M}{N}}$.
 \end{frame}
 \begin{frame}{Analysis of Grover's algorithm}
 \begin{equation*}
-(-WV_f)^k \ket{+} = \sin((2k + 1)\theta)\ket{s} + \cos((2k+1)\theta)\ket{f}
+(-WV_f)^k \ket{\psi} = \sin((2k + 1)\theta)\ket{s} + \cos((2k+1)\theta)\ket{f}
 \end{equation*}
 The probability of success is \emm{$\sin^2((2k+1)\theta)$}.
 
@@ -499,5 +499,14 @@ Since \emm{$\theta = \arccos\left(\sqrt{\frac{N-1}{N}}\right)$},
 \item For general $M$, Grover's search is \emm{asymptotically optimal}.
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Assignments}
+\small
+\begin{enumerate}
+\setlength{\itemsep}{2em}
+\item Show two distinct eigenvalues and corresponding eigenvectors of the Grover operator $-WV_f$.
+\end{enumerate}
+\end{frame}
+
 
 \end{document}
