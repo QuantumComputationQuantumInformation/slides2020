@@ -21,3 +21,4 @@ https://www.youtube.com/playlist?list=PLmCVdZFx-DuebJ2Up_0tW5cAgJmsjECcY
 * 11/13 Quantum phase estimation [slide](/tex/11_QuantumPhaseEstimation.pdf)
 * 11/17 Shor's algorithm [slide](/tex/12_Shor.pdf)
 * 11/20 Grover's algorithm [slide](/tex/13_Grover.pdf)
+* 11/24 Operational characterization of quantum nonlocality [slide](/tex/14_QuantumCorrelation.pdf)
